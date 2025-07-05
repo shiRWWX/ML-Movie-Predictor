@@ -1,4 +1,3 @@
-# 📂 Start of File
 
 import streamlit as st
 import requests
@@ -17,6 +16,8 @@ import time
 import difflib
 import speech_recognition as sr
 from sklearn.metrics.pairwise import cosine_similarity
+from tensorflow.keras.losses import MeanSquaredError
+from tensorflow.keras.metrics import MeanAbsoluteError
 
 
 
@@ -41,7 +42,13 @@ preprocessor = joblib.load("models/preprocessor.pkl")
 rating_model = joblib.load("models/rating_model.pkl")
 revenue_model = joblib.load("models/revenue_model.pkl")
 tokenizer = joblib.load("models/tokenizer.pkl")
-dl_model = tf.keras.models.load_model("models/overview_rating_model.h5")
+dl_model = tf.keras.models.load_model(
+    "models/overview_rating_model.h5",
+    custom_objects={
+        "mse": MeanSquaredError(),
+        "mae": MeanAbsoluteError(),
+    }
+)
 
 # ------------------ TMDB API ------------------
 API_KEY = "767e59e73de41cf06bc1133584eab132"
@@ -101,7 +108,7 @@ def preprocess_api_data(movie):
         return None, None
 
 # ------------------ Recommendation ------------------
-movies_df = joblib.load("data/movies.pkl")
+movies_df = pd.read_csv("dataset/tmdb_5000_movies.csv")
 similarity = joblib.load("data/similarity.pkl")
 
 def fetch_movie_details_by_id(movie_id):
