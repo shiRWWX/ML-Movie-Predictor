@@ -18,6 +18,11 @@ import speech_recognition as sr
 from sklearn.metrics.pairwise import cosine_similarity
 from tensorflow.keras.losses import MeanSquaredError
 from tensorflow.keras.metrics import MeanAbsoluteError
+import os
+
+# Force Streamlit to listen on all network interfaces
+os.environ["STREAMLIT_SERVER_ADDRESS"] = "0.0.0.0"
+os.environ["STREAMLIT_SERVER_PORT"] = "8080"
 
 
 
