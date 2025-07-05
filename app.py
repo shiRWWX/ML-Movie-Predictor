@@ -1,5 +1,4 @@
 
-import streamlit as st
 import requests
 import joblib
 import numpy as np
@@ -19,6 +18,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from tensorflow.keras.losses import MeanSquaredError
 from tensorflow.keras.metrics import MeanAbsoluteError
 import os
+import streamlit as st
 
 # Force Streamlit to listen on all network interfaces
 os.environ["STREAMLIT_SERVER_ADDRESS"] = "0.0.0.0"
