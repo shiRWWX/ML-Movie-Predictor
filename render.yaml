@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: ml-movie-predictor
+    env: python
+    buildCommand: ""
+    startCommand: streamlit run app.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
