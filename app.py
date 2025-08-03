@@ -44,7 +44,7 @@ tokenizer = joblib.load("models/tokenizer.pkl")
 dl_model = tf.keras.models.load_model("models/overview_rating_model.h5")
 
 # ------------------ TMDB API ------------------
-API_KEY = "767e59e73de41cf06bc1133584eab132"
+API_KEY = Your API KEY
 
 
 # ------------------ Get Top Movies by Year or Decade ------------------
@@ -479,4 +479,5 @@ if st.button("🎭 Show Movie Genres"):
             else:
                 st.info("No genre data available.")
         else:
+
             st.error("❌ Could not fetch movie.")
